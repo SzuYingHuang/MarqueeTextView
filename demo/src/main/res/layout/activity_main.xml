@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cindyhuang.marqreetextview.demo.MainActivity">
+
+
+
+    <!--<com.cindyhuang.marqueetextview.MarqueeTextView-->
+    <!--android:id="@+id/marqueeTextView"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="100dp"-->
+    <!--android:scrollbars="horizontal"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--&gt;-->
+
+    <!--</com.cindyhuang.marqueetextview.MarqueeTextView>-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+
+            <com.cindyhuang.marqueetextview.MarqueeTextView
+                android:id="@+id/marqueeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.cindyhuang.marqueetextview.MarqueeTextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
