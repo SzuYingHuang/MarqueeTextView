@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,19 +17,28 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class MarqueeTextView extends RecyclerView {
 
     public static final float TEXT_MAX_SIZE = 300;
+    private static final int HANDLER_MESSAGE_ID_SCROLL = 1;
+    private static final int HANDLER_MESSAGE_ID_TWINK = 2;
 
     private Context context;
     private LinearLayoutManager linearLayoutManager;
     private int endPosition;
     private AtomicBoolean shouldStop = new AtomicBoolean(true);
+    private boolean isTwinkling;
 
-    Handler handler = new Handler() {
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
-                case 1:
+                case HANDLER_MESSAGE_ID_SCROLL:
                     MarqueeTextView.this.smoothScrollBy(50, 0);
+                    break;
+                case HANDLER_MESSAGE_ID_TWINK:
+                    MarqueeTextView.this.setVisibility(
+                            MarqueeTextView.this.getVisibility() == VISIBLE ?
+                                    INVISIBLE : VISIBLE
+                    );
                     break;
             }
         }
@@ -49,7 +59,9 @@ public class MarqueeTextView extends RecyclerView {
         this.context = context;
     }
 
-    public void initialize(final String text) {
+    public void initialize(final String text, final int textColor, final boolean isBold, final boolean isTwinkling) {
+        this.isTwinkling = isTwinkling;
+
         setHasFixedSize(true);
         setHorizontalScrollBarEnabled(false);
         setVerticalScrollBarEnabled(false);
@@ -73,7 +85,7 @@ public class MarqueeTextView extends RecyclerView {
                 float density = getResources().getDisplayMetrics().density;
                 float textSize = Math.min(viewHeight / (density * 1.3f), TEXT_MAX_SIZE);
 
-                MarqueeTextAdapter adapter = new MarqueeTextAdapter(dataset, textSize);
+                MarqueeTextAdapter adapter = new MarqueeTextAdapter(dataset, textSize, textColor, isBold);
                 setAdapter(adapter);
             }
         });
@@ -89,6 +101,14 @@ public class MarqueeTextView extends RecyclerView {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         stop();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_MOVE)
+            return true;
+
+        return super.dispatchTouchEvent(ev);
     }
 
     @Override
@@ -111,11 +131,29 @@ public class MarqueeTextView extends RecyclerView {
                             e.printStackTrace();
                         }
                         Message msg = handler.obtainMessage();
-                        msg.what = 1;
+                        msg.what = HANDLER_MESSAGE_ID_SCROLL;
                         msg.sendToTarget();
                     }
                 }
             }.start();
+
+            if (isTwinkling) {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        while (!shouldStop.get()) {
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            Message msg = handler.obtainMessage();
+                            msg.what = HANDLER_MESSAGE_ID_TWINK;
+                            msg.sendToTarget();
+                        }
+                    }
+                }.start();
+            }
         }
     }
 
