@@ -1,5 +1,6 @@
 package com.cindyhuang.marqueetextview;
 
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ public class MarqueeTextAdapter extends RecyclerView.Adapter<MarqueeTextAdapter.
 
     private List<String> dataset;
     private float textSize;
+    private int textColor;
+    private boolean isBold;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private View view;
@@ -21,9 +24,12 @@ public class MarqueeTextAdapter extends RecyclerView.Adapter<MarqueeTextAdapter.
         }
     }
 
-    public MarqueeTextAdapter(List<String> dataset, float textSize) {
+    public MarqueeTextAdapter(List<String> dataset, float textSize, int textColor, boolean isBold) {
         this.dataset = dataset;
         this.textSize = textSize;
+        this.textSize = textSize;
+        this.textColor = textColor;
+        this.isBold = isBold;
     }
 
     @Override
@@ -42,6 +48,8 @@ public class MarqueeTextAdapter extends RecyclerView.Adapter<MarqueeTextAdapter.
         tv.setLayoutParams(new ViewGroup.LayoutParams(widthParam, ViewGroup.LayoutParams.MATCH_PARENT));
         tv.setText(dataset.get(position));
         tv.setTextSize(textSize);
+        tv.setTextColor(textColor);
+        tv.setTypeface(isBold ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
         tv.setIncludeFontPadding(false);
 
     }
