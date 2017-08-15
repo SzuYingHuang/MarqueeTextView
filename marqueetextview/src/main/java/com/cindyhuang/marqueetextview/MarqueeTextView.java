@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MarqueeTextView extends RecyclerView {
 
-    public static final float TEXT_MAX_SIZE = 300;
+    public static final float TEXT_MAX_SIZE =200;
     private static final int HANDLER_MESSAGE_ID_SCROLL = 1;
     private static final int HANDLER_MESSAGE_ID_TWINK = 2;
 
