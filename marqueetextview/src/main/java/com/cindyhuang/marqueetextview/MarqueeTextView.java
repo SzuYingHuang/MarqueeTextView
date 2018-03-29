@@ -25,6 +25,7 @@ public class MarqueeTextView extends RecyclerView {
     private int endPosition;
     private AtomicBoolean shouldStop = new AtomicBoolean(true);
     private boolean isTwinkling;
+    private int textSpeed = 50;
 
     private Handler handler = new Handler() {
         @Override
@@ -32,7 +33,7 @@ public class MarqueeTextView extends RecyclerView {
             super.handleMessage(msg);
             switch (msg.what) {
                 case HANDLER_MESSAGE_ID_SCROLL:
-                    MarqueeTextView.this.smoothScrollBy(50, 0);
+                    MarqueeTextView.this.smoothScrollBy(textSpeed, 0);
                     break;
                 case HANDLER_MESSAGE_ID_TWINK:
                     MarqueeTextView.this.setVisibility(
@@ -59,8 +60,9 @@ public class MarqueeTextView extends RecyclerView {
         this.context = context;
     }
 
-    public void initialize(final String text, final int textColor, final boolean isBold, final boolean isTwinkling) {
+    public void initialize(final String text, final int textSpeed, final int textColor, final boolean isBold, final boolean isTwinkling) {
         this.isTwinkling = isTwinkling;
+        this.textSpeed = textSpeed;
 
         setHasFixedSize(true);
         setHorizontalScrollBarEnabled(false);

@@ -13,6 +13,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MarqueeTextView marquee = (MarqueeTextView)findViewById(R.id.marqueeTextView);
-        marquee.initialize("Hello World", Color.BLACK, true, true);
+        marquee.initialize("Hello World", 10,  Color.BLACK, true, false);
     }
 }
