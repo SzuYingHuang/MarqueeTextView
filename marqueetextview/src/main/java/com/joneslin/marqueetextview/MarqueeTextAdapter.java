@@ -1,4 +1,4 @@
-package com.cindyhuang.marqueetextview;
+package com.joneslin.marqueetextview;
 
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;

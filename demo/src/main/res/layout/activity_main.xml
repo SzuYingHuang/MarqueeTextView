@@ -4,11 +4,11 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cindyhuang.marqreetextview.demo.MainActivity">
+    tools:context="com.joneslin.marqreetextview.demo.MainActivity">
 
 
 
-    <!--<com.cindyhuang.marqueetextview.MarqueeTextView-->
+    <!--<MarqueeTextView-->
     <!--android:id="@+id/marqueeTextView"-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="100dp"-->
@@ -16,7 +16,7 @@
     <!--android:layout_centerInParent="true"-->
     <!--&gt;-->
 
-    <!--</com.cindyhuang.marqueetextview.MarqueeTextView>-->
+    <!--</MarqueeTextView>-->
 
 
     <LinearLayout
@@ -31,12 +31,12 @@
             android:layout_weight="5"
             android:orientation="horizontal">
 
-            <com.cindyhuang.marqueetextview.MarqueeTextView
+            <com.joneslin.marqueetextview.MarqueeTextView
                 android:id="@+id/marqueeTextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            </com.cindyhuang.marqueetextview.MarqueeTextView>
+            </com.joneslin.marqueetextview.MarqueeTextView>
         </LinearLayout>
 
         <LinearLayout

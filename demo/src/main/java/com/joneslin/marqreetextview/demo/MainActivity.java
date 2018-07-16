@@ -1,10 +1,10 @@
-package com.cindyhuang.marqreetextview.demo;
+package com.joneslin.marqreetextview.demo;
 
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import com.cindyhuang.marqueetextview.MarqueeTextView;
+import com.joneslin.marqueetextview.MarqueeTextView;
 
 public class MainActivity extends Activity {
 
