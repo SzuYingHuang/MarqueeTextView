@@ -21,7 +21,7 @@ An android library of custom view for implementing marquee text based on Recycle
 2.  In target module build.gradle
   ```
   dependencies {
-    compile 'com.github.joneslin:MarqueeTextView:v1.0'
+    compile 'com.github.SzuYingHuang:MarqueeTextView:v1.2'
   }
   ```
 

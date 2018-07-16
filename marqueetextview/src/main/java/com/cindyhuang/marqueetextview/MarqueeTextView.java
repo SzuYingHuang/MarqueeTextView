@@ -1,4 +1,4 @@
-package com.joneslin.marqueetextview;
+package com.cindyhuang.marqueetextview;
 
 import android.content.Context;
 import android.os.Handler;
